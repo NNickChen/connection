@@ -4,6 +4,7 @@ using namespace std;
 
 string graph[1000][100][100];
 string name[1000][100];
+string job[1000][100];
 
 static int sosu_table[26] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101};
 
@@ -31,8 +32,10 @@ int main()
     while(1)
     {
         string name1;
+        string job1;
         cin>>name1;
         if(name1[0]=='0') break;
+        cin>>job1;
         if(isFirstTime)
         {
         	myname=name1;
@@ -43,6 +46,7 @@ int main()
         int i;
         for(i=0;i<100&&name[hash][i].size()>0;i++);
         name[hash][i]=name1;
+    	job[hash][i]=job1;
         int friends;
         cin>>friends;
         for(int x=0;x<friends;x++)
@@ -60,28 +64,21 @@ int main()
     {
     	string name1;
     	name1=Q.front();
+    	cout<<name1<<" ";
     	Q.pop();
     	int hash=calc_hash(name1);
     	int i;
     	for(i=0;i<100&&name[hash][i]!=name1;i++);
     	// cout<<name[hash][i]<<"\n";
-    	bool isFirstFriend=true;
-    	bool haveFriend=false;
+    	cout<<job[hash][i]<<" ";
     	for(int j=0;j<100;j++)
     	{
     		if(graph[hash][i][j].size()>0)
     		{
-    			if(isFirstFriend)
-    			{
-    				cout<<name1<<" ";
-    				isFirstFriend=false;
-    				haveFriend=true;
-    			}
     			cout<<graph[hash][i][j]<<" ";
     			Q.push(graph[hash][i][j]);
     		}
     	}
-    	if(haveFriend)
     	cout<<endl;
     }
     return 0;
