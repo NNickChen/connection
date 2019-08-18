@@ -5,6 +5,7 @@ using namespace std;
 string graph[1000][100][100];
 string name[1000][100];
 string job[1000][100];
+bool vis[1000][100];
 
 static int sosu_table[26] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101};
 
@@ -62,6 +63,12 @@ int main()
     }
     // cout<<myname<<"\n";
     Q.push(myname);
+    {
+        int hash=calc_hash(myname);
+        int k;
+        for(k=0;k<100&&name[hash][k]!=myname;k++);
+        vis[hash][k]=true;
+    }
     while(!Q.empty())
     {
     	string name1;
@@ -76,17 +83,26 @@ int main()
         if(job[hash][i]==object)
         {
             cout<<name1<<" is a "<<object<<"!\n";
-            break;
+            return 0;
         }
     	for(int j=0;j<100;j++)
     	{
     		if(graph[hash][i][j].size()>0)
     		{
     			// cout<<graph[hash][i][j]<<" ";
-    			Q.push(graph[hash][i][j]);
-    		}
+			     int hash1=calc_hash(graph[hash][i][j]);
+			     int k;
+			     for(k=0;k<100&&name[hash1][k]!=graph[hash][i][j];k++);
+                if(!vis[hash1][k])
+                {
+                    vis[hash1][k]=true;
+                    cout<<graph[hash][i][j]<<endl;
+                  Q.push(graph[hash][i][j]);
+                }
+            }
     	}
     	// cout<<endl;
     }
+    cout<<"You don't have connection to a "<<object<<endl;
     return 0;
 }
