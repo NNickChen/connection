@@ -32,10 +32,10 @@ int main()
         cin>>name1;
         if(name1[0]=='0') break;
         int hash=calc_hash(name1);
-        cout<<hash<<endl;
+        // cout<<hash<<endl;
         int i;
         for(i=0;i<100&&name[hash][i].size()>0;i++);
-        // name[hash][i]=name1;
+        name[hash][i]=name1;
         int friends;
         cin>>friends;
         for(int x=0;x<friends;x++)
@@ -55,12 +55,13 @@ int main()
     	int hash=calc_hash(name1);
     	int i;
     	for(i=0;i<100&&name[hash][i]!=name1;i++);
-    	cout<<name[hash][i]<<"\n";
+    	// cout<<name[hash][i]<<"\n";
     	for(int j=0;j<100;j++)
     	{
     		if(graph[hash][i][j].size()>0)
     		 cout<<graph[hash][i][j]<<" ";
     	}
+        cout<<"\n";
     }
     return 0;
 }
