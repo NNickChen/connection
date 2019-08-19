@@ -96,7 +96,7 @@ int main()
                 if(!vis[hash1][k])
                 {
                     vis[hash1][k]=true;
-                    cout<<graph[hash][i][j]<<endl;
+                    // cout<<graph[hash][i][j]<<endl;
                   Q.push(graph[hash][i][j]);
                 }
             }
