@@ -16,3 +16,4 @@ Uae it what ever you want!<br>
 My Website:<http://broke.ai><br>
 My Blog:<http://blog.broke.ai><br>
 My Forum:<http://forum.broke.ai>
+I'm using GPG to commit!
