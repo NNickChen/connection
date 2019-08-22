@@ -10,6 +10,31 @@ map <string,bool> vis;
 
 queue <string> Q;
 
+void bfv(string myname)
+{
+    Q.push(myname);
+    vis[myname]=true;
+    while(!Q.empty())
+    {
+        string name;
+        name=Q.front();
+        cout<<name<<" ";
+        Q.pop();
+        cout<<job[name]<<" ";
+        for (int i = 0; i < graph[name].size(); ++i)
+        {
+            string frname=graph[name][i];
+            if(!vis[frname])
+            {
+                vis[frname]=true;
+                cout<<frname<<" ";
+                Q.push(frname);
+            }
+        }
+        cout<<endl;
+    }
+}
+
 int main()
 {
 	string myname;
@@ -36,27 +61,6 @@ int main()
             graph[name].push_back(friendd);
         }
     }
-    // cout<<myname<<"\n";
-    Q.push(myname);
-    vis[myname]=true;
-    while(!Q.empty())
-    {
-    	string name;
-    	name=Q.front();
-    	cout<<name<<" ";
-    	Q.pop();
-    	cout<<job[name]<<" ";
-        for (int i = 0; i < graph[name].size(); ++i)
-        {
-            string frname=graph[name][i];
-            if(!vis[frname])
-            {
-                vis[frname]=true;
-                cout<<frname<<" ";
-                Q.push(frname);
-            }
-        }
-    	cout<<endl;
-    }
+    bfv(myname);
     return 0;
 }
